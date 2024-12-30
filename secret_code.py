@@ -6,11 +6,10 @@ response = requests.get('https://docs.google.com/document/d/e/2PACX-1vQGUck9HIFC
 soup = BeautifulSoup(response.text, 'html.parser')
 
 table = soup.table
-# print('\n\rows: \n\n', table_rows, '\n\n')
 
 if table:
-    # table_rows = list.sort(table.contents[1:], key=lambda row:  ) # pyright:ignore
-    print(type(int(table.contents[5].contents[0].contents[0].contents[0].string)))
+    table_rows = sorted(table.contents[1:], key=lambda row: (int(row.contents[0].contents[0].contents[0].string), int(row.contents[2].contents[0].contents[0].string))) # pyright:ignore
+    print(table_rows)
     
 
 
